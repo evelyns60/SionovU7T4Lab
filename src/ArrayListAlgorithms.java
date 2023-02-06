@@ -93,16 +93,39 @@ public class ArrayListAlgorithms {
 
     public static ArrayList<String> parseWordsAndReverse(String sentence) {
         ArrayList<String> list = new ArrayList<String>();
-        int previousSpace = 0;
-        for (int i = 0; i < sentence.length(); i ++) {
-            if (sentence.substring(i, i + 1).equals(" ")) {
-                list.add(0, sentence.substring(previousSpace, i));
-                previousSpace = i;
-            }
+        int index = 0;
+        String tempSentence = sentence;
+        while (tempSentence.indexOf("") != -1) {
+            index = tempSentence.indexOf("");
+            list.add(0, tempSentence.substring(0, index));
+            tempSentence = tempSentence.substring(index + 1);
         }
-        list.add(sentence.substring())
+
+        list.add(0, tempSentence);
         return list;
 
+    }
+
+    public static void removeDuplicates(ArrayList<Integer> intList) {
+        for (int i = 0; i < intList.size(); i ++) {
+            for (int j = i + 1; j < intList.size(); j ++) {
+                if (intList.get(i) == intList.get(j)) {
+                    intList.remove(j);
+                    j --;
+                }
+            }
+        }
+    }
+
+    public static void moveBWords(ArrayList<String> wordList) {
+        int size = wordList.size();
+        for (int i = 0; i < size; i ++) {
+            if (wordList.get(i).substring(0, 0 + 1).equals("b")) {
+                wordList.add(wordList.get(i));
+                wordList.remove(i);
+                i --;
+            }
+        }
     }
 
 
