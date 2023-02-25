@@ -128,5 +128,73 @@ public class ArrayListAlgorithms {
         }
     }
 
+    public static ArrayList<Integer> modes(int[] numList) {
+        ArrayList<Integer> modeList = new ArrayList<>();
+        int maxCount = 1;
+        for (int i = 0; i < numList.length; i ++) {
+            int count = 1;
+            for (int j = i + 1; j < numList.length; j ++) {
+                if (numList[i] == numList[j]) {
+                    count ++;
+                }
+            }
+
+            if (count > maxCount) {
+                maxCount = count;
+                modeList.clear();
+                modeList.add(numList[i]);
+            } else if (count == maxCount) {
+                modeList.add(numList[i]);
+            }
+        }
+        return modeList;
+    }
+
+    public static void sortStudents(ArrayList<Student> studentsToSort) {
+        for (int i = 0; i < studentsToSort.size(); i++) {
+            for (int j = i + 1; j < studentsToSort.size(); j++) {
+                Student student1 = studentsToSort.get(i);
+                Student student2 = studentsToSort.get(j);
+                if (student1.getLastName().compareTo(student2.getLastName()) >= 0) {
+                    studentsToSort.set(i, student2);
+                    studentsToSort.set(j, student1);
+                }
+                if (student1.getLastName() == student2.getLastName()) {
+                    if (student1.getFirstName().compareTo(student2.getFirstName()) >= 0) {
+                        studentsToSort.set(i, student2);
+                        studentsToSort.set(j, student1);
+                    }
+                }
+
+            }
+        }
+
+        for (int i = 0; i < studentsToSort.size(); i++) {
+            for (int j = i + 1; j < studentsToSort.size(); j++) {
+                Student student1 = studentsToSort.get(i);
+                Student student2 = studentsToSort.get(j);
+                if (student1.getLastName().equals(student2.getLastName())) {
+                    if (student1.getFirstName().compareTo(student2.getFirstName()) >= 0) {
+                        studentsToSort.set(i, student2);
+                        studentsToSort.set(j, student1);
+                    }
+                }
+            }
+        }
+
+        for (int i = 0; i < studentsToSort.size(); i++) {
+            for (int j = i + 1; j < studentsToSort.size(); j++) {
+                Student student1 = studentsToSort.get(i);
+                Student student2 = studentsToSort.get(j);
+                if (student1.getFirstName().equals(student2.getFirstName())) {
+                    if (student1.getGpa() < student2.getGpa()) {
+                        studentsToSort.set(i, student2);
+                        studentsToSort.set(j, student1);
+                    }
+                }
+            }
+        }
+
+    }
 
 }
